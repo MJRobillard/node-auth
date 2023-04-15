@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth");
 
-const User = require("../model/User");
+const User = require("../model/User"); //default citename/User, look below for what follows
 
 /**
  * @method - POST
@@ -14,71 +14,72 @@ const User = require("../model/User");
  */
 
 router.post(
-  "/signup",
+  "/club_post",
   [
-    check("username", "Please Enter a Valid Username")
-      .not()
-      .isEmpty(),
-    check("email", "Please enter a valid email").isEmail(),
-    check("password", "Please enter a valid password").isLength({
+    check("club_name", "Please enter a valid club name").not().isEmpty(),
+    check("description", "Please enter a valid description").isLength({
       min: 6
     })
   ],
   async (req, res) => {
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array()
       });
     }
 
-    const { username, email, password } = req.body;
-    try {
-      let user = await User.findOne({
-        email
-      });
-      if (user) {
-        return res.status(400).json({
-          msg: "User Already Exists"
-        });
+    const { club_name, description } = req.body;
+
+    const payload = {
+      description: {
+        desc: description
+      },
+      club_name: {
+        name: club_name
       }
+    };
 
-      user = new User({
-        username,
-        email,
-        password
+    try {
+      // Save the payload to the JSON file or database here
+      res.status(200).json({
+        message: "Club post created successfully",
+        payload: payload
       });
-
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(password, salt);
-
-      await user.save();
-
-      const payload = {
-        user: {
-          id: user.id
-        }
-      };
-
-      jwt.sign(
-        payload,
-        "randomString",
-        {
-          expiresIn: 10000
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.status(200).json({
-            token
-          });
-        }
-      );
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).send("Error in Saving");
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({
+        message: "Server Error"
+      });
     }
   }
 );
+
+router.get("/club_description/:name", async (req, res) => {
+  const { name } = req.params;
+
+  try {
+    // Find the club in the database or JSON file based on the given name
+    const club = await Club.findOne({ name });
+    if (!club) {
+      return res.status(404).json({
+        message: "Club not found"
+      });
+    }
+
+    const { description } = club;
+    res.status(200).json({
+      message: "Club description retrieved successfully",
+      description: description
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "Club get Server Error"
+    });
+  }
+});
 
 router.post(
   "/login",
@@ -147,6 +148,7 @@ router.post(
  * @param - /user/me
  */
 
+
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
@@ -156,5 +158,6 @@ router.get("/me", auth, async (req, res) => {
     res.send({ message: "Error in Fetching user" });
   }
 });
+
 
 module.exports = router;
