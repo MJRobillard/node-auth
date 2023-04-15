@@ -17,15 +17,10 @@ const ClubView = (props) => {
     }
   
     return <div>
-      <div>
-        <input type="text" placeholder="ID" value={id} onChange={e => setId(e.target.value)} />
-      </div>
-      <div>
-        <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
-      </div>
-      <div>
-        <input type="text" placeholder="Body" value={body} onChange={e => setBody(e.target.value)} />
-      </div>
+      <h3>
+        This is the header for the view window for clubs
+      </h3>
+      
       <button style={{ marginTop: '4px'}} onClick={onSubmit}>
         Submit
       </button>
