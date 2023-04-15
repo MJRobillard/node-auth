@@ -24,7 +24,7 @@ li {
 
 ul.navbar {
     display: flexbox;
-    position: absolute;
+    position: fixed;
     width: 329px;
     height: 26px;
     padding: 8px;
