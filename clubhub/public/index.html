@@ -15,6 +15,9 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <h1>Welcome to Club</h1>
+    <h2>About Us</h2>
+    <h4>Students at UC Berkeley trying to make your lives easier when choosing clubs.</h4>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -28,7 +31,30 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+
+    <ul class="navbar">
+      <li class="root-logo"><a href="#root">ClubHub</a></li> 
+      <li class="navbar-elem"><a href="#about">About</a></li>
+      <li class="navbar-elem"><a href=/create.html>Create</a></li>
+      <li class="navbar-elem"><a href=/clubs.html>Clubs</a></li>
+    </ul>
+
+    <section id="root">
+    <div id="root">
+      <h1>About Us</h1>
+      <form name="login" action="" onsubmit="return " method="post">
+        <div class="login-container">
+          <h2>Sign in.</h2>
+          <input type="text" placeholder="Username" name="uname" required>
+          <input type="password" placeholder="Password" name="psw" required>
+          <button type="submit">Login</button>
+        </div>
+        <div class="login-container">
+          <span class="psw">Don't have an account?<a href=/new_user.html>Sign Up here</a></span>
+        </div>
+      </form>
+    </div>
+    </section>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

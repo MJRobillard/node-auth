@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+}
+
+ul.navbar {
+    display: flexbox;
+    position: fixed;
+    width: 329px;
+    height: 26px;
+    padding: 8px;
+    background: linear-gradient(103.87deg, #F3C15F 28.35%, #E38A85 59.84%);
+}
+
+li ul.navbar:hover {
+  background-color: #f2c306;
+}
