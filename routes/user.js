@@ -6,6 +6,7 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 
 const User = require("../model/User"); //default citename/User, look below for what follows
+const Club_info = require("../model/Club_Info"); //default citename/User, look below for what follows
 
 /**
  * @method - POST
@@ -13,73 +14,175 @@ const User = require("../model/User"); //default citename/User, look below for w
  * @description - User SignUp
  */
 
+// Define payload outside the router function
+// Define a new endpoint for getting all posts
+router.get("/allposts", async (req, res) => {
+  try {
+    // Query the database for all posts
+    const allPosts = await Club_info.find().sort({ createdAt: -1 });
+
+    // Return all the posts in the response
+    res.json(allPosts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Define a new endpoint for getting a specific club by name
+router.get("/specific_club/:name", async (req, res) => {
+  try {
+    // Extract the club name from the request parameters
+    const name = req.params.name;
+
+    // Query the database for the club with the given name
+    const club = await Club_info.findOne({ name });
+
+    // Return the club in the response
+    if (!club) {
+      return res.status(404).json({ msg: "Club not found" });
+    }
+
+    res.json(club);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 router.post(
-  "/club_post",
+  "/clubsignup",
   [
-    check("club_name", "Please enter a valid club name").not().isEmpty(),
+    check("name", "Please Enter a Valid Club name"),
+    check("tags", "Club tag"),
     check("description", "Please enter a valid description").isLength({
       min: 6
     })
   ],
   async (req, res) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array()
       });
     }
 
-    const { club_name, description } = req.body;
-
-    const payload = {
-      description: {
-        desc: description
-      },
-      club_name: {
-        name: club_name
-      }
-    };
-
+    const { name, tags, description } = req.body;
     try {
-      // Save the payload to the JSON file or database here
-      res.status(200).json({
-        message: "Club post created successfully",
-        payload: payload
+      let newClub = await Club_info
+      .findOne({
+        name
       });
-    } catch (e) {
-      console.error(e);
-      res.status(500).json({
-        message: "Server Error"
+      if (newClub) {
+        return res.status(400).json({
+          msg: "Club Already Exists"
+        });
+      }
+
+      newClub = new Club_info
+      ({
+        name,
+        tags,
+        description
       });
+
+
+      await newClub.save();
+
+      const payload = {
+        newClub: {
+          id: name.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        "randomString",
+        {
+          expiresIn: 10000
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.status(200).json({
+            token
+          });
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send("NICE NEW CLUB ADDED");
     }
   }
 );
 
-router.get("/club_description/:name", async (req, res) => {
-  const { name } = req.params;
 
-  try {
-    // Find the club in the database or JSON file based on the given name
-    const club = await Club.findOne({ name });
-    if (!club) {
-      return res.status(404).json({
-        message: "Club not found"
+router.post(
+  "/signup",
+  [
+    check("username", "Please Enter a Valid Username")
+      .not()
+      .isEmpty(),
+    check("email", "Please enter a valid email").isEmail(),
+    check("password", "Please enter a valid password").isLength({
+      min: 6
+    })
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array()
       });
     }
 
-    const { description } = club;
-    res.status(200).json({
-      message: "Club description retrieved successfully",
-      description: description
-    });
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({
-      message: "Club get Server Error"
-    });
+    const { username, email, password } = req.body;
+    try {
+      let user = await User.findOne({
+        email
+      });
+      if (user) {
+        return res.status(400).json({
+          msg: "User Already Exists"
+        });
+      }
+
+      user = new User({
+        username,
+        email,
+        password
+      });
+
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+
+      await user.save();
+
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        "randomString",
+        {
+          expiresIn: 10000
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.status(200).json({
+            token
+          });
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send("Error in Saving");
+    }
   }
-});
+);
+
 
 router.post(
   "/login",
