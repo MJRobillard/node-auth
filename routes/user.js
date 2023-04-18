@@ -29,26 +29,7 @@ router.get("/allposts", async (req, res) => {
   }
 });
 
-// Define a new endpoint for getting a specific club by name
-router.get("/specific_club/:name", async (req, res) => {
-  try {
-    // Extract the club name from the request parameters
-    const name = req.params.name;
 
-    // Query the database for the club with the given name
-    const club = await Club_info.findOne({ name });
-
-    // Return the club in the response
-    if (!club) {
-      return res.status(404).json({ msg: "Club not found" });
-    }
-
-    res.json(club);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
 
 router.post(
   "/clubsignup",
