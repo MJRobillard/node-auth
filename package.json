@@ -16,7 +16,8 @@
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.17",
-    "npm": "^9.6.4"
+    "npm": "^9.6.4",
+    "react-scripts": "^5.0.1"
   },
   "repository": {
     "type": "git",
