@@ -5,21 +5,21 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth");
 
-const User = require("../model/User"); //default citename/User, look below for what follows
-const Club_info = require("../model/Club_Info"); //default citename/User, look below for what follows
+const HomeworkUserSchema = require("../model/User"); //default citename/User, look below for what follows
+const Shop = require("../model/Shop"); //default citename/User, look below for what follows
 
 /**
  * @method - POST
  * @param - /signup
- * @description - User SignUp
+ * @price - User SignUp
  */
 
 // Define payload outside the router function
 // Define a new endpoint for getting all posts
-router.get("/allposts", async (req, res) => {
+router.get("/all_list", async (req, res) => {
   try {
     // Query the database for all posts
-    const allPosts = await Club_info.find().sort({ createdAt: -1 });
+    const allPosts = await Shop.find().sort({ createdAt: -1 });
 
     // Return all the posts in the response
     res.json(allPosts);
@@ -32,11 +32,11 @@ router.get("/allposts", async (req, res) => {
 
 
 router.post(
-  "/clubsignup",
+  "/list",
   [
-    check("name", "Please Enter a Valid Club name"),
-    check("tags", "Club tag"),
-    check("description", "Please enter a valid description").isLength({
+    check("name", "Please Enter a Valid  name"),
+    check("count", "count "),
+    check("price", "Please enter a valid price").isLength({
       min: 6
     })
   ],
@@ -48,23 +48,23 @@ router.post(
       });
     }
 
-    const { name, tags, description } = req.body;
+    const { name, count, price } = req.body;
     try {
-      let newClub = await Club_info
+      let newClub = await Shop
       .findOne({
         name
       });
       if (newClub) {
         return res.status(400).json({
-          msg: "Club Already Exists"
+          msg: "Item Already Exists"
         });
       }
 
-      newClub = new Club_info
+      newClub = new Shop
       ({
         name,
-        tags,
-        description
+        count,
+        price
       });
 
 
@@ -91,7 +91,7 @@ router.post(
       );
     } catch (err) {
       console.log(err.message);
-      res.status(500).send("NICE NEW CLUB ADDED");
+      res.status(500).send("NICE NEW Item ADDED");
     }
   }
 );
@@ -118,7 +118,7 @@ router.post(
 
     const { username, email, password } = req.body;
     try {
-      let user = await User.findOne({
+      let user = await HomeworkUserSchema.findOne({
         email
       });
       if (user) {
@@ -127,7 +127,7 @@ router.post(
         });
       }
 
-      user = new User({
+      user = new HomeworkUserSchema({
         username,
         email,
         password
@@ -184,7 +184,7 @@ router.post(
 
     const { email, password } = req.body;
     try {
-      let user = await User.findOne({
+      let user = await HomeworkUserSchema.findOne({
         email
       });
       if (!user)
@@ -228,7 +228,7 @@ router.post(
 
 /**
  * @method - POST
- * @description - Get LoggedIn User
+ * @price - Get LoggedIn User
  * @param - /user/me
  */
 
@@ -236,7 +236,7 @@ router.post(
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const user = await User.findById(req.user.id);
+    const user = await HomeworkUserSchema.findById(req.user.id);
     res.json(user);
   } catch (e) {
     res.send({ message: "Error in Fetching user" });

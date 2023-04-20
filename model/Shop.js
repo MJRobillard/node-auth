@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
-const ClubSchema = mongoose.Schema({
+const ShopSchema = mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-  description: {
+  count: {
     type: String,
     required: true
   },
-  tags: {
+  price: {
     type: String,
     required: true
   },
@@ -20,4 +20,4 @@ const ClubSchema = mongoose.Schema({
 });
 
 // export model user with UserSchema
-module.exports = mongoose.model("Club_Info", ClubSchema);
+module.exports = mongoose.model("Club_Info", ShopSchema);
