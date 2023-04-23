@@ -18,10 +18,10 @@ const ClubWindow = (props) => {
     getPostsData();
   }, [])
 
-  const [windowTitle, setTitle] = useState();
-  const [windowBody, setTitle] = useState();
-  const [windowId, setTitle] = useState();
-  const [windowUrlOfClub, setTitle] = useState();
+  //const [windowTitle, setTitle] = useState();
+  //const [windowBody, setTitle] = useState();
+  //const [windowId, setTitle] = useState();
+  //const [windowUrlOfClub, setTitle] = useState();
 
   // ====================
 //console.log('the value of data is',data)
@@ -33,7 +33,7 @@ const ClubWindow = (props) => {
         )
       }
 
-      <NewPost getData={getPostsData} />
+      
     </div>
   )
 

@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Club from "./Club";
 import ScrollElement from './ScrollElement';
+import ClubWindow from './ClubWindow';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <ClubWindow></ClubWindow>
         <Club id="11" title="ski clubs" body="a fun club where people get together and do blow" url="https.www.gogle.com"/>
         <ScrollElement title = "scrollTest"></ScrollElement>
         <a
