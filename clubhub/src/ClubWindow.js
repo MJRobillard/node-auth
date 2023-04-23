@@ -23,12 +23,12 @@ const ClubWindow = (props) => {
   const [windowId, setId] = useState("for");
   const [windowTag, setTag] = useState("this thing");
 
-  const updateWindow = (props) => {
+  const updateWindow = (title, body, id, tags) => {
 
-    setTitle(props.title);
-    setBody(props.body);
-    setId(props.id);
-    setTag(props.tag);
+    setTitle(title);
+    setBody(body);
+    setId(id);
+    setTag(tags);
   }
 
   // ====================
