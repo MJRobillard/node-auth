@@ -8,6 +8,7 @@ const cors = require("cors");
 InitiateMongoServer();
 
 const app = express();
+app.use(cors({origin:true}));
 
 // PORT
 const PORT = process.env.PORT || 4000;
@@ -27,7 +28,6 @@ app.get("/", (req, res) => {
 app.use("/user", user);
 
 
-app.use(cors());
 
 app.listen(PORT, (req, res) => {
   console.log(`Server Started at PORT ${PORT}`);
