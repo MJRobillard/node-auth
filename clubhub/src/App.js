@@ -13,9 +13,8 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <ClubWindow></ClubWindow>
-        <p>test should be above this line</p>
-        <Club id="11" title="ski clubs" body="a fun club where people get together and do blow" url="https.www.gogle.com"/>
-        <ScrollElement title = "scrollTest"></ScrollElement>
+
+        
         <a
           className="App-link"
           href="https://reactjs.org"
