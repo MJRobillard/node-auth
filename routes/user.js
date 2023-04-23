@@ -91,7 +91,7 @@ router.post(
       );
     } catch (err) {
       console.log(err.message);
-      res.status(500).send("NICE NEW Item ADDED");
+      res.status(500).send(err);
     }
   }
 );
