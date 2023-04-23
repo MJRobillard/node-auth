@@ -18,21 +18,35 @@ const ClubWindow = (props) => {
     getPostsData();
   }, [])
 
-  //const [windowTitle, setTitle] = useState();
-  //const [windowBody, setTitle] = useState();
-  //const [windowId, setTitle] = useState();
-  //const [windowUrlOfClub, setTitle] = useState();
+  const [windowTitle, setTitle] = useState("starter");
+  const [windowBody, setBody] = useState("values");
+  const [windowId, setId] = useState("for");
+  const [windowTag, setTag] = useState("this thing");
+
+  const updateWindow = (props) => {
+
+    setTitle(props.title);
+    setBody(props.body);
+    setId(props.id);
+    setTag(props.tag);
+  }
 
   // ====================
 //console.log('the value of data is',data)
   return (
     <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
       {
+        
         data && data.map(d =>
-          <ScrollElement title={d.name} body={d.description} id={d._id} tags={d.tags}/>
+          <ScrollElement title={d.name} body={d.description} id={d._id} tags={d.tags} updateFunction={updateWindow}/>
         )
       }
-
+      <h5>selected should be between this=======</h5>
+      <p>Selected Title: {windowTitle}</p>
+      <p>Selected description: {windowBody}</p>
+      <p>Selected Id: {windowId}</p>
+      <p>Selected Tag: {windowTag}</p>
+      <h5>and this=======</h5>
       
     </div>
   )
