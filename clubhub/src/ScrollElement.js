@@ -2,7 +2,7 @@ import {useState} from "react";
 
 
 const ScrollElement = (props) => {
-    console.log(props.id, props.title, props.body, props.urlOfClub)
+    console.log(props.id, props.title, props.body, props.tags)
     return <div style={{ textAlign: 'left', marginBottom: '12px'}}>
       <h3>
         {props.title}
