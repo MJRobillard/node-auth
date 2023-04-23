@@ -29,7 +29,7 @@ const ClubWindow = (props) => {
     <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
       {
         data && data.map(d =>
-          <ScrollElement title={d.title} body={d.body} urlOfClub={d.urlOfClub} id={d.id}/>
+          <ScrollElement title={d.name} body={d.description} id={d._id} tags={d.tags}/>
         )
       }
 
