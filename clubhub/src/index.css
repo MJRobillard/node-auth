@@ -12,6 +12,22 @@ code {
     monospace;
 }
 
+
+/* Navbar */
+.navbar {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0;
+    top: 0;
+    position: fixed;
+    width: 100px;
+    background: linear-gradient(103.87deg, #F3C15F 28.35%, #E38A85 59.84%);
+}
+
+li ul.navbar:hover {
+  background-color: #f2c306;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -19,18 +35,29 @@ ul {
 }
 
 li {
-  display: inline;
+  float: right;
 }
 
-ul.navbar {
-    display: flexbox;
-    position: fixed;
-    width: 329px;
-    height: 26px;
-    padding: 8px;
-    background: linear-gradient(103.87deg, #F3C15F 28.35%, #E38A85 59.84%);
+.root-logo {
+  float: left;
 }
 
-li ul.navbar:hover {
-  background-color: #f2c306;
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: "Inter";
+
+}
+
+a:hover {
+  font-weight: bold;
+  color: white;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
