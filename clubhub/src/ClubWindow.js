@@ -38,7 +38,7 @@ const ClubWindow = (props) => {
       {
         
         data && data.map(d =>
-          <ScrollElement title={d.name} body={d.description} id={d._id} tags={d.tags} updateFunction={updateWindow}/>
+          <ScrollElement title={d.name} body={d.description} id={d._id} tags={d.tags} key = {d._id} updateFunction={updateWindow}/>
         )
       }
       <h5>selected should be between this=======</h5>
