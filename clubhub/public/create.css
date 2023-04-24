@@ -1,0 +1,36 @@
+/* Navbar */
+ul.navbar {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    background: linear-gradient(103.87deg, #F3C15F 28.35%, #E38A85 59.84%);
+    overflow: hidden;
+}
+
+li {
+  display: inline;
+  float: right;
+}
+
+.root-logo {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: "Inter";
+
+}
+
+li a:hover {
+  font-weight: bold;
+  color: white;
+}
