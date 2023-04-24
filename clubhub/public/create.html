@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter'>
-    <link rel="stylesheet" href="create.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/create_styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -17,39 +16,37 @@
 
   <ul class="navbar">
     <li class="navbar-elem"><a href="#root"><i class="fa fa-fw fa-home"></i></a></li> 
-    <li class="navbar-elem"><a href="#about">About</a></li>
     <li class="navbar-elem"><a href=/create.html>Create</a></li>
     <li class="navbar-elem"><a href=/clubs.html>Clubs</a></li>
   </ul>
 
-    <!-- <section id="root">
+    <section id="root">
+      <ul class="navbar">
+        <li class="navbar-elem"><a href="../public/index.html"><i class="fa fa-fw fa-home"></i></a></li> 
+        <li class="navbar-elem"><a href=../public/create.html>Create</a></li>
+        <li class="navbar-elem"><a href=../public/clubs.html>Clubs</a></li>
+      </ul>
         <div class="create-container">
-          <div class="create-container">
-            <h2>Create a club</h2>
+          <div class="create-text">
+            <h2 style="font-weight: bold;">Create a club.</h2>
           </div>
-          <ul class="navbar">
-            <li class="navbar-elem"><a href="#root"><i class="fa fa-fw fa-home"></i></a></li> 
-            <li class="navbar-elem"><a href="#about">About</a></li>
-            <li class="navbar-elem"><a href=../create.html>Create</a></li>
-            <li class="navbar-elem"><a href=../clubs.html>Clubs</a></li>
-          </ul>
           <div class="create-form-container">
             <form name="create-club" action="" onsubmit="return " method="post">
               <div class="create-container">
-                <input type="text" placeholder="Club Name" name="club_name" required>
-                <input type="text" placeholder="Club Description" name="description" required>
-                <input type="url" placeholder="Website" name="website" required>
-                <input type="email" placeholder="Email" name="email" required>
-                <input type="checkbox" placeholder="Email" name="email" required>
-                <input type="submit">Login</button>
-              </div>
-              <div class="login-container">
-                <span class="psw">Don't have an account?<a href=/new_user.html>Sign Up here</a></span>
+                <input class="form-elem" type="text" placeholder="Club Name" name="club_name" required>
+                <input class="form-elem" type="text" placeholder="Club Description" name="description" required>
+                <input class="form-elem" type="text" placeholder="Website" name="website" required>
+                <input class="form-elem" type="email" placeholder="Email" name="email" required>
+                <input class="form-elem" type="submit">
               </div>
             </form>
           </div>
         </div>
-      </section> -->
+      </section>
+      <footer>
+        <p style="align-self: flex-end;">Authors</p>
+        <p style="align-self: flex-end;">Full Stack Web Development Decal Spring 2023</p>
+      </footer>
     
 </body>
 </html>

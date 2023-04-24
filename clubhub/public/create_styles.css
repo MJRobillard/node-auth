@@ -8,6 +8,7 @@ ul.navbar {
     width: 100%;
     background: linear-gradient(103.87deg, #F3C15F 28.35%, #E38A85 59.84%);
     overflow: hidden;
+    left: 0px;
 }
 
 li {
@@ -36,40 +37,45 @@ li a:hover {
 }
 
 /* Root */
-#root {
-  width: 100%;
-  height: 650px;
+.create-form-container {
+  align-items: center;
+  display: grid;
+  column-gap: 200px;
+  row-gap: 100px;
+  left: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  left: 475px;
 }
 
-/* Login */
-.root-container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  height: 50px;
-  width: 700px;
-  align-content: center;
-  align-items: stretch;
+.create-text {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30em;
   position: relative;
-  top: 400px;
-  left: 20px;
-
-
+  top: 50px;
+  left: 40px;
+}
+ 
+.create-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50em;
 }
 
-.title-home-container {
-
+.form-elem {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 30px;
+  padding: 10px;
 }
-.form-container {
-  position: relative;
-  
-
-}
-.login-container {
-
-}
-
+/* Form */
 input, select {
   width: 45%;
   padding: 12px 20px;
@@ -78,21 +84,31 @@ input, select {
   border: 7px solid black;
   border-radius: 20px;
   box-sizing: border-box;
+  font-family: "Inter";
+  padding: 6px;
 }
 
+/* Input Boxes */
 input[type=submit] {
-  width: 100%;
+  width: 20%;
   background-color: black;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 15px;
   cursor: pointer;
+  font-family: "Inter";
+  position: absolute;
+  left: 110px;
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: gray;
+  text: black;
+  border-radius: 15px;
+  width: 20%;
+  font-family: "Inter";
 }
 
 input::placeholder {
@@ -116,4 +132,18 @@ input::placeholder {
 h2 {
   font-family: "Inter";
   font-size: 50px;
+}
+
+/* Footer */
+footer {
+  display: flex;
+  background-color: black;
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  bottom: 0px;
+  color: white;
+  font-size: 10px;
+  width: 100%;
+  left: 0px;
 }
