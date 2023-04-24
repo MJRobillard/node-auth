@@ -1,46 +1,50 @@
 const express = require("express");
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth");
-
-const HomeworkUserSchema = require("../model/User"); //default citename/User, look below for what follows
-const Shop = require("../model/Shop"); //default citename/User, look below for what follows
+const User = require("../model/User");
+const Club_info = require("../model/Club_Info");
 
 /**
- * @method - POST
- * @param - /signup
- * @price - User SignUp
+ * @method - GET
+ * @param - /all_list
+ * @description - Get all the shops
  */
 
-// Define payload outside the router function
-// Define a new endpoint for getting all posts
 router.get("/all_list", async (req, res) => {
   try {
-    // Query the database for all posts
-    const allPosts = await Shop.find().sort({ createdAt: -1 });
-
-    // Return all the posts in the response
-    res.json(allPosts);
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    const allShops = await Club_info.find().sort({ createdAt: -1 });
+    res.json(allShops);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
 
-
+/**
+ * @method - POST
+ * @param - /club_post
+ * @description - Club post creation
+ */
 
 router.post(
-  "/list",
+  "/clubsignup",
   [
-    check("name", "Please Enter a Valid  name"),
-    check("count", "count "),
-    check("price", "Please enter a valid price").isLength({
+    check("name", "Please Enter a Valid Club name"),
+    check("tags", "Club tag"),
+    check("description", "Please enter a valid description").isLength({
       min: 6
     })
   ],
   async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -48,34 +52,35 @@ router.post(
       });
     }
 
-    const { name, count, price } = req.body;
+    const { name, tags, description } = req.body;
     try {
-      let newClub = await Shop
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader('Access-Control-Allow-Methods', '*');
+      res.setHeader("Access-Control-Allow-Headers", "*");
+      let newClub = await Club_info
       .findOne({
         name
       });
       if (newClub) {
         return res.status(400).json({
-          msg: "Item Already Exists"
+          msg: "Club Already Exists"
         });
       }
 
-      newClub = new Shop
+      newClub = new Club_info
       ({
         name,
-        count,
-        price
+        tags,
+        description
       });
 
 
       await newClub.save();
-
       const payload = {
         newClub: {
           id: name.id
         }
       };
-
       jwt.sign(
         payload,
         "randomString",
@@ -95,8 +100,6 @@ router.post(
     }
   }
 );
-
-
 router.post(
   "/signup",
   [
@@ -118,7 +121,7 @@ router.post(
 
     const { username, email, password } = req.body;
     try {
-      let user = await HomeworkUserSchema.findOne({
+      let user = await User.findOne({
         email
       });
       if (user) {
@@ -127,23 +130,19 @@ router.post(
         });
       }
 
-      user = new HomeworkUserSchema({
+      user = new User({
         username,
         email,
         password
       });
-
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
-
       await user.save();
-
       const payload = {
         user: {
           id: user.id
         }
       };
-
       jwt.sign(
         payload,
         "randomString",
@@ -163,8 +162,6 @@ router.post(
     }
   }
 );
-
-
 router.post(
   "/login",
   [
@@ -175,7 +172,6 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array()
@@ -184,26 +180,23 @@ router.post(
 
     const { email, password } = req.body;
     try {
-      let user = await HomeworkUserSchema.findOne({
+      let user = await User.findOne({
         email
       });
       if (!user)
         return res.status(400).json({
           message: "User Not Exist"
         });
-
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
         return res.status(400).json({
           message: "Incorrect Password !"
         });
-
       const payload = {
         user: {
           id: user.id
         }
       };
-
       jwt.sign(
         payload,
         "randomString",
@@ -228,7 +221,7 @@ router.post(
 
 /**
  * @method - POST
- * @price - Get LoggedIn User
+ * @description - Get LoggedIn User
  * @param - /user/me
  */
 
@@ -236,12 +229,10 @@ router.post(
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const user = await HomeworkUserSchema.findById(req.user.id);
+    const user = await User.findById(req.user.id);
     res.json(user);
   } catch (e) {
     res.send({ message: "Error in Fetching user" });
   }
 });
-
-
 module.exports = router;

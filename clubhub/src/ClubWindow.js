@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import ScrollElement from "./ScrollElement";
+import NewClub from "./NewClub";
 
 const ClubWindow = (props) => {
 
@@ -9,7 +10,7 @@ const ClubWindow = (props) => {
   const getPostsData = () => {
     console.log('didthething');
     axios
-      .get('http://localhost:3002/posts') //THIS IS YOUR URL OF YOUR API
+      .get('http://localhost:4000/user/all_list') //THIS IS YOUR URL OF YOUR API
      .then((data) => setData(data.data)) //PROMISE API, THAT MEANS WHEN YOU GET THE DATA WHAT DO I DO WITH IT
       .catch((error) => console.log(error));  //ERROR CATCHING IN CASE WE RECIEVE AN ERROR
   };
@@ -18,22 +19,39 @@ const ClubWindow = (props) => {
     getPostsData();
   }, [])
 
-  const [windowTitle, setTitle] = useState();
-  const [windowBody, setTitle] = useState();
-  const [windowId, setTitle] = useState();
-  const [windowUrlOfClub, setTitle] = useState();
+  const [windowTitle, setTitle] = useState("starter");
+  const [windowBody, setBody] = useState("values");
+  const [windowId, setId] = useState("for");
+  const [windowTag, setTag] = useState("this thing");
+
+  const updateWindow = (title, body, id, tags) => {
+
+    setTitle(title);
+    setBody(body);
+    setId(id);
+    setTag(tags);
+  }
 
   // ====================
 //console.log('the value of data is',data)
   return (
     <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
       {
+        
         data && data.map(d =>
-          <ScrollElement title={d.title} body={d.body} urlOfClub={d.urlOfClub} id={d.id}/>
+          <ScrollElement title={d.name} body={d.description} id={d._id} tags={d.tags} key = {d._id} updateFunction={updateWindow}/>
         )
       }
+      <h5>selected should be between this=======</h5>
+      <p>Selected Title: {windowTitle}</p>
+      <p>Selected description: {windowBody}</p>
+      <p>Selected Id: {windowId}</p>
+      <p>Selected Tag: {windowTag}</p>
+      <h5>and this=======</h5>
 
-      <NewPost getData={getPostsData} />
+      <h5>this is the spot for the submit form===</h5>
+      <NewClub getData={getPostsData}></NewClub>
+      
     </div>
   )
 
