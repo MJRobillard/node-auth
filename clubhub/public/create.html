@@ -21,28 +21,32 @@
   </ul>
 
     <section id="root">
+      <ul class="navbar">
+        <li class="navbar-elem"><a href="../public/index.html"><i class="fa fa-fw fa-home"></i></a></li> 
+        <li class="navbar-elem"><a href=../public/create.html>Create</a></li>
+        <li class="navbar-elem"><a href=../public/clubs.html>Clubs</a></li>
+      </ul>
         <div class="create-container">
           <div class="create-text">
-            <h2>Create a club</h2>
+            <h2 style="font-weight: bold;">Create a club.</h2>
           </div>
-          <ul class="navbar">
-            <li class="navbar-elem"><a href="../public/index.html"><i class="fa fa-fw fa-home"></i></a></li> 
-            <li class="navbar-elem"><a href=../public/create.html>Create</a></li>
-            <li class="navbar-elem"><a href=../public/clubs.html>Clubs</a></li>
-          </ul>
           <div class="create-form-container">
             <form name="create-club" action="" onsubmit="return " method="post">
               <div class="create-container">
-                <input type="text" placeholder="Club Name" name="club_name" required>
-                <input type="text" placeholder="Club Description" name="description" required>
-                <input type="text" placeholder="Website" name="website" required>
-                <input type="email" placeholder="Email" name="email" required>
-                <input type="submit"></button>
+                <input class="form-elem" type="text" placeholder="Club Name" name="club_name" required>
+                <input class="form-elem" type="text" placeholder="Club Description" name="description" required>
+                <input class="form-elem" type="text" placeholder="Website" name="website" required>
+                <input class="form-elem" type="email" placeholder="Email" name="email" required>
+                <input class="form-elem" type="submit">
               </div>
             </form>
           </div>
         </div>
       </section>
+      <footer>
+        <p style="align-self: flex-end;">Authors</p>
+        <p style="align-self: flex-end;">Full Stack Web Development Decal Spring 2023</p>
+      </footer>
     
 </body>
 </html>

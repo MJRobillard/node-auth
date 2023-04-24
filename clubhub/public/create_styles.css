@@ -8,6 +8,7 @@ ul.navbar {
     width: 100%;
     background: linear-gradient(103.87deg, #F3C15F 28.35%, #E38A85 59.84%);
     overflow: hidden;
+    left: 0px;
 }
 
 li {
@@ -41,13 +42,39 @@ li a:hover {
   display: grid;
   column-gap: 200px;
   row-gap: 100px;
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: 1;
-  grid-row-end: 1;
-  
+  left: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  left: 475px;
 }
 
+.create-text {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30em;
+  position: relative;
+  top: 50px;
+  left: 40px;
+}
+ 
+.create-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50em;
+}
+
+.form-elem {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 30px;
+  padding: 10px;
+}
 /* Form */
 input, select {
   width: 45%;
@@ -72,6 +99,8 @@ input[type=submit] {
   border-radius: 15px;
   cursor: pointer;
   font-family: "Inter";
+  position: absolute;
+  left: 110px;
 }
 
 input[type=submit]:hover {
@@ -103,4 +132,18 @@ input::placeholder {
 h2 {
   font-family: "Inter";
   font-size: 50px;
+}
+
+/* Footer */
+footer {
+  display: flex;
+  background-color: black;
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  bottom: 0px;
+  color: white;
+  font-size: 10px;
+  width: 100%;
+  left: 0px;
 }
