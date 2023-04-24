@@ -1,0 +1,10 @@
+.club-window {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.submit-form {
+  padding: 20px;
+  background-color: #f8f8f8;
+}
