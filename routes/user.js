@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth");
-
 const HomeworkUserSchema = require("../model/User"); //default citename/User, look below for what follows
 const Shop = require("../model/Shop"); //default citename/User, look below for what follows
 
@@ -18,6 +17,9 @@ const Shop = require("../model/Shop"); //default citename/User, look below for w
 // Define a new endpoint for getting all posts
 router.get("/all_list", async (req, res) => {
   try {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
     // Query the database for all posts
     const allPosts = await Shop.find().sort({ createdAt: -1 });
 

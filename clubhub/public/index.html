@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../src/index.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -18,13 +19,11 @@
     <title>ClubHub Landing</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-
     <ul class="navbar">
-      <li class="root-logo"><a href="#root">ClubHub</a></li> 
+      <li class="navbar-elem"><a href="#root"><i class="fa fa-fw fa-home"></i></a></li> 
       <li class="navbar-elem"><a href="#about">About</a></li>
-      <li class="navbar-elem"><a href=/create.html>Create</a></li>
-      <li class="navbar-elem"><a href=/clubs.html>Clubs</a></li>
+      <li class="navbar-elem"><a href=../public/create.html>Create</a></li>
+      <li class="navbar-elem"><a href=../public/clubs.html>Clubs</a></li>
     </ul>
 
     <section id="root">
@@ -35,10 +34,10 @@
         <div class="form-container">
           <form name="login" action="" onsubmit="return " method="post">
             <div class="login-container">
-              <h2>Sign in.</h2>
+              <h2 style="font-weight: bold;">Sign in.</h2>
               <input type="text" placeholder="Username" name="uname" required>
               <input type="password" placeholder="Password" name="psw" required>
-              <button type="submit">Login</button>
+              <input type="submit">
             </div>
             <div class="login-container">
               <span class="psw">Don't have an account?<a href=/new_user.html>Sign Up here</a></span>
@@ -50,42 +49,32 @@
 
     <section id="about">
       <div class="about-container">
-        <h1>About us.</h1>
-        <h2>Students at UC Berkeley trying to make your lives easier when choosing clubs.</h2>
+        <h1 style="color: white;">About us.</h1>
+        <h2 style="color: white;">Students at UC Berkeley trying to make your lives easier when choosing clubs.</h2>
       </div>
-      <div class="img-about-flexbox">
+      <div class="img-about-grid">
         <div class="img-about-column">
-          <img src="">
+          <img src="../img_place" class="grid-img">
           <h3>Text</h3>
         </div>
         <div class="img-about-column">
-          <img src="">
+          <img src="../img_place" class="grid-img">
           <h3>Text</h3>
         </div>
         <div class="img-about-column">
-          <img src="">
+          <img src="../img_place" class="grid-img">
           <h3>Text</h3>
         </div>
         <div class="img-about-column">
-          <img src="">
+          <img src="../img_place" class="grid-img">
           <h3>Text</h3>
         </div>
       </div>
     </section>
 
     <footer>
-      <p>Authors</p>
-      <p>Full Stack Web Development Decal Spring 2023</p>
+      <p style="align-self: flex-end;">Authors</p>
+      <p style="align-self: flex-end;">Full Stack Web Development Decal Spring 2023</p>
     </footer>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

@@ -14,27 +14,19 @@ code {
 
 
 /* Navbar */
-.navbar {
+ul.navbar {
     list-style-type: none;
     margin: 0px;
     padding: 0;
     top: 0;
     position: fixed;
-    width: 100px;
+    width: 100%;
     background: linear-gradient(103.87deg, #F3C15F 28.35%, #E38A85 59.84%);
-}
-
-li ul.navbar:hover {
-  background-color: #f2c306;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    overflow: hidden;
 }
 
 li {
+  display: inline;
   float: right;
 }
 
@@ -45,6 +37,7 @@ li {
 li a {
   display: block;
   color: black;
+  font-weight: bold;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -52,12 +45,181 @@ li a {
 
 }
 
-a:hover {
+li a:hover {
   font-weight: bold;
   color: white;
 }
 
-a {
-  color: black;
-  text-decoration: none;
+/* Root */
+#root {
+  width: 100%;
+  height: 650px;
+}
+
+/* Login */
+.root-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 50px;
+  width: 700px;
+  align-content: center;
+  align-items: stretch;
+  position: relative;
+  top: 400px;
+  left: 20px;
+
+
+}
+
+.title-home-container {
+
+}
+.form-container {
+  position: relative;
+  
+
+}
+.login-container {
+
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 7px solid black;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 7px solid black;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+input::placeholder {
+  font-size: 15px;
+    font-family: "Inter";
+    align-self: top;
+    float: left;
+}
+
+.form {
+  background-color: transparent;
+  height: 350px;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: flex-start;
+}
+
+/* About Page */
+#about {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(141.24deg, #F3C15F 22.27%, #E38A85 80.93%);
+}
+.about-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end right;
+  flex-wrap: wrap;
+  height: 200px;
+  width: 500px;
+  align-content: center;
+  align-items: stretch;
+}
+.img-about-grid {
+  display: grid;
+  column-gap: 200px;
+  row-gap: 100px;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  grid-template-columns: 200px 200px;
+  grid-template-rows: 40% 40%;
+}
+
+.grid-img {
+  display: grid;
+  position: relative;
+  height: 200px;
+  width: 100px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 40px;
+  border-color: transparent;
+}
+
+.img-about-column {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 100 px;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-template-columns: 30px 30px;
+  grid-template-rows: 40% 40%;
+}
+/* Fonts */
+h1 {
+  font-family: "Inter";
+  font-size: 100px;
+}
+h2 {
+  font-family: "Inter";
+  font-size: 50px;
+}
+h3 {
+  font-family: "Inter";
+  font-size: 11px;
+}
+h4 {
+  font-family: "Inter";
+}
+h5 {
+  font-family: "Inter";
+}
+h6 {
+  font-family: "Inter";
+}
+
+/* Footer */
+footer {
+  display: flex;
+  background-color: black;
+  position: relative;
+  height: 100px;
+  width: 10px;
+  bottom: 0px;
+  color: white;
+  font-size: 10px;
+  width: 100%;
 }
