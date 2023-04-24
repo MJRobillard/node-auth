@@ -6,6 +6,17 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const User = require("../model/User");
 const Club_info = require("../model/Club_Info");
+const cors = require('cors');
+router.use(cors());
+const app = express();
+
+const corsOptions = {
+  origin:'http://localhost:4000',
+  credentials:true,
+  optionSuccessStatus:200
+}
+app.use(cors(corsOptions))
+
 
 /**
  * @method - GET
@@ -32,19 +43,22 @@ router.get("/all_list", async (req, res) => {
  * @description - Club post creation
  */
 
+
 router.post(
-  "/clubsignup",
+  '/clubsignup',
   [
-    check("name", "Please Enter a Valid Club name"),
-    check("tags", "Club tag"),
-    check("description", "Please enter a valid description").isLength({
+    check('name', 'Please Enter a Valid Club name'),
+    check('tags', 'Club tag'),
+    check('description', 'Please enter a valid description').isLength({
       min: 6
     })
   ],
   async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader("Access-Control-Allow-Headers", "*");
+
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader('Access-Control-Allow-Methods', '*');
+      res.setHeader("Access-Control-Allow-Headers", "*");
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -57,23 +71,18 @@ router.post(
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader('Access-Control-Allow-Methods', '*');
       res.setHeader("Access-Control-Allow-Headers", "*");
-      let newClub = await Club_info
-      .findOne({
-        name
-      });
+      let newClub = await Club_info.findOne({ name });
       if (newClub) {
         return res.status(400).json({
-          msg: "Club Already Exists"
+          msg: 'Club Already Exists'
         });
       }
 
-      newClub = new Club_info
-      ({
+      newClub = new Club_info({
         name,
         tags,
         description
       });
-
 
       await newClub.save();
       const payload = {
@@ -83,7 +92,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        "randomString",
+        'randomString',
         {
           expiresIn: 10000
         },
@@ -100,6 +109,12 @@ router.post(
     }
   }
 );
+
+
+
+
+
+
 router.post(
   "/signup",
   [
