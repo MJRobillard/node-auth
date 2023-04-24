@@ -55,9 +55,6 @@ router.post(
   ],
   async (req, res) => {
 
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader('Access-Control-Allow-Methods', '*');
-      res.setHeader("Access-Control-Allow-Headers", "*");
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -68,9 +65,7 @@ router.post(
 
     const { name, tags, description } = req.body;
     try {
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader('Access-Control-Allow-Methods', '*');
-      res.setHeader("Access-Control-Allow-Headers", "*");
+
       let newClub = await Club_info.findOne({ name });
       if (newClub) {
         return res.status(400).json({
