@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import ScrollElement from "./ScrollElement";
+import NewClub from "./NewClub";
 
 const ClubWindow = (props) => {
 
@@ -47,6 +48,9 @@ const ClubWindow = (props) => {
       <p>Selected Id: {windowId}</p>
       <p>Selected Tag: {windowTag}</p>
       <h5>and this=======</h5>
+
+      <h5>this is the spot for the submit form===</h5>
+      <NewClub getData={getPostsData}></NewClub>
       
     </div>
   )
