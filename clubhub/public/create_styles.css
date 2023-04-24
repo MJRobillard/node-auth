@@ -36,12 +36,11 @@ li a:hover {
 }
 
 /* Root */
-.create-container {
+.create-form-container {
   align-items: center;
   display: grid;
   column-gap: 200px;
   row-gap: 100px;
-  padding: 0px;
   grid-column-start: 1;
   grid-column-end: 1;
   grid-row-start: 1;
@@ -59,8 +58,10 @@ input, select {
   border-radius: 20px;
   box-sizing: border-box;
   font-family: "Inter";
+  padding: 6px;
 }
 
+/* Input Boxes */
 input[type=submit] {
   width: 20%;
   background-color: black;
