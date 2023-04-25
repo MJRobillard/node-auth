@@ -6,14 +6,24 @@ const ScrollElement = (props) => {
     const title = props.title;
     const id = props.id;
     const body = props.body;
+    
     const tags = props.tags;
     return <div style={{ textAlign: 'left', marginBottom: '12px'}}>
-      <h3>
+      <h2>
         {props.title}
+      </h2>
+      <h3>
+        {props.body}
       </h3>
-      <button onClick={() => {props.updateFunction(title, body, id ,tags)}}>
-        Select
-      </button>
+      <h3>
+        {props.tags}
+      </h3>
+      <button onClick={() => {
+  console.log('Button clicked!');
+  props.updateFunction(title, body, id, tags);
+}}>
+  Get The club INfo
+</button>
     </div>
   }
   

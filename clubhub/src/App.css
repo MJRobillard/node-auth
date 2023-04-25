@@ -7,6 +7,36 @@
   pointer-events: none;
 }
 
+h2 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #0077be; /* A deep blue color */
+  text-shadow: 2px 2px #86c6e2; /* A lighter blue shadow to create depth */
+  text-align: center;
+  margin: 20px 0;
+  border-bottom: 2px solid #86c6e2; /* A border to resemble waves */
+  padding-bottom: 10px;
+}
+h3 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #5f3dc4; /* A deep purple color */
+  text-shadow: 2px 2px #c7b6f5; /* A lighter purple shadow to create depth */
+  text-align: center;
+  margin: 20px 0;
+  border-bottom: 2px solid #c7b6f5; /* A border to add emphasis */
+  padding-bottom: 10px;
+}
+h5 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff4500; /* A bright red-orange color similar to sunset */
+  text-align: center;
+  margin: 20px 0;
+  text-transform: uppercase; /* Optional: to add emphasis and style */
+  letter-spacing: 2px; /* Optional: to add emphasis and style */
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

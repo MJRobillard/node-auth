@@ -31,7 +31,13 @@ const ClubWindow = (props) => {
 
   return (
     <><div className="submit-form">
-      <h5>This is the spot for the submit form</h5>
+      <br>
+      </br>
+      <br>
+      </br>
+      <br>
+      </br>
+      <h5>Submit form</h5>
 
       <NewClub getData={getPostsData}></NewClub>
     </div><div className="club-window">
